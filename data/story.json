@@ -1,0 +1,157 @@
+{
+  "storyItems": [
+    {
+      "id": 1,
+      "src": "/AN_Story/Img_1_An.png",
+      "tag": "The Beginning",
+      "text": "Nandu, do you remember this day? We were complete strangers, and we didn’t even notice each other… little did we know what was about to begin. ❤️",
+      "chapterNumber": "01",
+      "subTitle": "Two Strangers!!!",
+      "question": "On which year did our story begin with?",
+      "answer": "2021"
+    },
+    {
+      "id": 2,
+      "src": "/AN_Story/Img_2_Hopital_An.png",
+      "tag": "Quiet Moments",
+      "text": "Everyone’s love story starts somewhere… ours started while waiting outside a labour room😂🫣❤️.",
+      "chapterNumber": "02",
+      "subTitle": "The Spark ✨",
+      "question": "When did we first meet? 💕 __/09/2026",
+      "answer": "14"
+    },
+    {
+      "id": 3,
+      "src": "/AN_Story/Img_3_Msg_An.png",
+      "tag": "That First Text",
+      "text": "Are you thinking now… should you have just sent “Friends 🤝\"? 🤨🧐👊",
+      "chapterNumber": "03",
+      "subTitle": "The Notification That Changed Everything💌",
+      "question": "When did you message me for the first time?💕 __/09/2021",
+      "answer": "15"
+    },
+    {
+      "id": 4,
+      "src": "/AN_Story/Img_4_Pro_An.png",
+      "tag": "Late Night Confessions",
+      "text": "എത്ര ആലോചിച്ചിട്ടും ഇവിടെ എഴുതാൻ എനിക്ക് തൃപ്തിയുള്ളതൊന്നും കിട്ടുന്നില്ല… അതുകൊണ്ട് ഒറ്റവാക്കിൽ പറയാം — എന്റെ ലോകമായതിന് നന്ദി. ❤️\n",
+      "chapterNumber": "04",
+      "subTitle": "Official Beginning ❤️",
+      "question": "When did I propose to you? ❤️ __/09/2021",
+      "answer": "17"
+    },
+    {
+      "id": 5,
+      "src": "/AN_Story/Img_5_Room_An.png",
+      "tag": "The Surprise Visit",
+      "text": "You made me so nervous that day…😓😓😓",
+      "chapterNumber": "05",
+      "subTitle": "My Nest 🏡❤️",
+      "question": "What did you suddenly come and see was messy?",
+      "answer": "Room"
+    },
+    {
+      "id": 6,
+      "src": "/AN_Story/Img_6_KSRTC_An.png",
+      "tag": "First Hand Hold",
+      "text": "My legs were shaking, while your eyes were asking for one more mile. ❤️",
+      "chapterNumber": "06",
+      "subTitle": "A Journey of Touch👩🏻‍❤️‍👨🏻",
+      "question": "On which bus service did our hands meet for the very first time?",
+      "answer": "KSRTC"
+    },
+    {
+      "id": 7,
+      "src": "/AN_Story/Img_7_Pozha_An.png",
+      "tag": "By The River",
+      "text": "Quiet golden hour by the riverbank. A moment frozen forever🥶🤤.",
+      "chapterNumber": "07",
+      "subTitle": "The kiss😚🥶",
+      "question": "What was the first thing that happened here?",
+      "answer": "Kiss"
+    },
+    {
+      "id": 8,
+      "src": "/AN_Story/Img_8_Lift_An.png",
+      "tag": "First Drive",
+      "text": "Enik nanam varunn🫣",
+      "chapterNumber": "08",
+      "subTitle": "The Bracelet & Black Bindi 🖤✨",
+      "question": "The day I picked you up from school, an important moment happened. What was the date? ❤️ __/05/2022",
+      "answer": "5"
+    },
+    {
+      "id": 9,
+      "src": "/AN_Story/Img_9_First_View_point_An.png",
+      "tag": "Peace",
+      "text": "Falling asleep peacefully on my shoulder while the world passed by.The first trip, No plans,  No worries.—just you and me.",
+      "chapterNumber": "09",
+      "subTitle": "Nandu nalloru view point ind poyalo?",
+      "question": "As you know, this was our first viewpoint visit. What was the name of the car we went on our first trip in? 🚗❤️",
+      "answer": "Kwid"
+    },
+    {
+      "instance": 10,
+      "id": 10,
+      "src": "/AN_Story/Img_10_Shukriya_An.png",
+      "tag": "Shukriya Bus",
+      "text": "Backil aarenkilum photo eduknandon onn nokkk ingane kidakathe🤦‍♂️",
+      "chapterNumber": "10",
+      "subTitle": "Miles of Shared Warmth",
+      "question": "What was the name of the bus we usually took together at 4:30 PM? 🚌❤️",
+      "answer": "Shukriya"
+    },
+    {
+      "id": 11,
+      "src": "/AN_Story/Img_11_Issue_An.png",
+      "tag": "Tough Days",
+      "text": "Working through misunderstandings, learning to listen and understand😊🤍.",
+      "chapterNumber": "11",
+      "subTitle": "The bond : Growing Stronger Together✨",
+      "question": "Which messaging app did your brother catch you using? 📱",
+      "answer": "Telegram"
+    },
+    {
+      "id": 12,
+      "src": "/AN_Story/Img_12_Long_An.png",
+      "tag": "Long Distance",
+      "text": "Late study sessions, exams, laptop screens, and counting down the miles😓🤍.",
+      "chapterNumber": "12",
+      "subTitle": "Bridges Across Distance🖤.",
+      "question": "In which year did I go to Trivandrum for my studies? ",
+      "answer": "2023"
+    },
+    {
+      "id": 13,
+      "src": "/AN_Story/Img_13_Train_An.png",
+      "tag": "Journey Back",
+      "text": "Platform goodbyes, train tickets, and the ache to see each other again.",
+      "chapterNumber": "13",
+      "subTitle": "The Countdown to Reunions😓😑",
+      "question": "What was the last food or drink we had together? ",
+      "answer": "Soda Lime"
+    },
+    {
+      "id": 14,
+      "src": "/AN_Story/Img_14_Final_An.png",
+      "tag": "Sep 17, 2021 – Sep 17, 2026",
+      "text": "Five whole years of memories, lessons, and unconditional love.Thankyou my 🌏🫂.",
+      "chapterNumber": "14",
+      "subTitle": "Memories to Keep Forever ❤️",
+      "question": "Who is Anoopkumar K’s love? ❤️",
+      "answer": "Sree Nandana P"
+    }
+  ],
+  "letterContent": "Dearest Nandu,\n\nHappy 5th Anniversary, my love! ❤️\n(September 17, 2021 – September 17, 2026)\n\nLooking back over these 14 illustrated chapters and 1,826 unforgettable days since September 17, 2021, my heart overflows with gratitude. From those nervous stolen glances outside to our long bus rides, late-night calls, and every milestone in between—loving you has been the single best journey of my life.\n\nWe have laughed together, held each other through tough days, crossed distance, and built a sanctuary of unconditional trust and warmth.\n\nFive years is only our beginning. I choose you today, tomorrow, and for all the chapters yet to be written.\n\nForever and always yours,\nWith all my heart ✨",
+  "homeContent": {
+    "badgeText": "5th Anniversary • September 17, 2021 – 2026 🌹",
+    "mainTitle": "Little Moments of ",
+    "titleHighlight": "Us ❤️",
+    "subtitle": "Let me begin this little present with just one word: Thank you, Nandu. ❤️",
+    "cardTitle": "My little world.",
+    "cardSubtitle": "I know this isn't our complete story, but it's my first and special little work for you—so just  feel it. ❤️",
+    "buttonText": "Open Storybook",
+    "leftTag": "Sep 17, 2021 – Sep 17, 2026",
+    "rightTag": "5th Anniversary"
+  }
+}

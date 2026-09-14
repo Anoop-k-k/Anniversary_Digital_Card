@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+:root {
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  --cream-bg: #faf8f5;
+  --cream-card: #ffffff;
+  --cream-card-subtle: #f6f2ed;
+  --rose-accent: #d98094;
+  --rose-soft: #e8a5b2;
+  --rose-deep: #8b4b57;
+  --gold-accent: #d4af37;
+  --charcoal: #2c2825;
+  --charcoal-muted: #6b635b;
+  --border-cream: #ece5dd;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--cream-bg);
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Glassmorphism & Soft Luxury Glows */
+.glass-cream {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(236, 229, 221, 0.8);
+}
+
+.glow-pill {
+  box-shadow: 0 0 25px -5px rgba(217, 128, 148, 0.4), 0 8px 20px -6px rgba(139, 75, 87, 0.25);
+}
+
+.glow-pill:hover {
+  box-shadow: 0 0 35px -2px rgba(217, 128, 148, 0.6), 0 12px 28px -4px rgba(139, 75, 87, 0.35);
+}
+
+.glow-curiosity {
+  box-shadow: 0 0 30px rgba(217, 128, 148, 0.35), 0 10px 25px rgba(139, 75, 87, 0.2);
+}
+
+/* 3D Wax Seal Button Styling */
+.wax-seal-btn {
+  background: radial-gradient(circle at 35% 35%, #ea9ab0, #c45b73, #7a2b3a);
+  box-shadow: 0 10px 30px rgba(139, 75, 87, 0.35), inset 0 3px 6px rgba(255, 255, 255, 0.5), inset 0 -4px 8px rgba(0, 0, 0, 0.35);
+}
+
+.wax-seal-btn:hover {
+  box-shadow: 0 14px 38px rgba(139, 75, 87, 0.55), inset 0 3px 8px rgba(255, 255, 255, 0.6), inset 0 -4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Image Frame Parallax Depth */
+.polaroid-frame {
+  box-shadow: 0 20px 40px -15px rgba(44, 40, 37, 0.15), 0 0 0 1px rgba(236, 229, 221, 0.8);
+}
+
+/* Custom Soft Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #faf8f5;
+}
+::-webkit-scrollbar-thumb {
+  background: #e8a5b2;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d98094;
+}
+
+/* Floating click particle animation */
+@keyframes floatUpFade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.6) translateY(0) rotate(0deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.2) translateY(-35px) rotate(12deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5) translateY(-70px) rotate(-12deg);
+  }
+}
+
+.animate-float-particle {
+  animation: floatUpFade 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Floating Flower Petal Animation */
+@keyframes floatPetal {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(105vh) translateX(80px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-petal {
+  animation: floatPetal 12s linear infinite;
+}
+
+/* Gentle Heartbeat Animation */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.08);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.06);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 2.4s ease-in-out infinite;
+}
+
+/* Heart-Shaped Romantic CTA Button */
+.heart-cta-btn {
+  background: radial-gradient(circle at 30% 30%, #f3a6b6, #d98094, #8b4b57);
+  box-shadow: 
+    0 12px 35px -5px rgba(217, 128, 148, 0.55),
+    0 6px 20px -3px rgba(139, 75, 87, 0.35),
+    inset 0 3px 6px rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.heart-cta-btn:hover {
+  box-shadow: 
+    0 18px 45px -2px rgba(217, 128, 148, 0.75),
+    0 8px 25px -2px rgba(139, 75, 87, 0.45),
+    inset 0 4px 8px rgba(255, 255, 255, 0.7);
+}
+
+/* Book Card 3D Depth */
+.book-card-shadow {
+  box-shadow: 
+    0 25px 50px -12px rgba(44, 40, 37, 0.18),
+    0 0 0 1px rgba(236, 229, 221, 0.9),
+    0 8px 16px -4px rgba(217, 128, 148, 0.12);
+}
+
+
