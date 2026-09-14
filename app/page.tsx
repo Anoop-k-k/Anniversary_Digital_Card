@@ -106,64 +106,111 @@ const playSoundEffect = (type: "unlock" | "seal" | "click" | "flip" | "error", e
   }
 };
 
+const normalizeAnswer = (ans: string): string => {
+  return ans
+    .toLowerCase()
+    .trim()
+    .replace(/^[^a-z0-9]+|[^a-z0-9]+$/gi, "")
+    .replace(/\s+/g, " ");
+};
+
+const checkAnswerCorrectness = (userAnsRaw: string, targetAnsRaw: string, chapterId: number): boolean => {
+  const user = normalizeAnswer(userAnsRaw);
+  const target = normalizeAnswer(targetAnsRaw);
+
+  if (!user) return false;
+
+  // Direct match against target answer
+  if (user === target) return true;
+
+  // Chapter-specific allowed aliases / variations
+  const chapterAliases: Record<number, string[]> = {
+    1: ["2021", "year 2021"],
+    2: ["14", "14th", "14/09", "14-09", "14/09/2021", "14-09-2021", "14th sep", "14th september", "september 14", "14 sep"],
+    3: ["15", "15th", "15/09", "15-09", "15/09/2021", "15-09-2021", "15th sep", "15th september", "september 15", "15 sep"],
+    4: ["17", "17th", "17/09", "17-09", "17/09/2021", "17-09-2021", "17th sep", "17th september", "september 17", "17 sep"],
+    5: ["room", "my room", "the room", "messy room"],
+    6: ["ksrtc", "ksrtc bus", "ksrtc bus service", "ksrtc swift"],
+    7: ["kiss", "first kiss", "a kiss", "the kiss"],
+    8: ["5", "05", "5th", "05th", "5/05", "05/05", "5/05/2022", "05/05/2022", "5-05-2022", "5th may", "5 may", "may 5"],
+    9: ["kwid", "kwid car", "renault kwid"],
+    10: ["shukriya", "shukriya bus", "the shukriya bus"],
+    11: ["telegram", "telegram app"],
+    12: ["2023", "year 2023"],
+    13: ["soda lime", "sodalime", "lime soda", "lime", "fresh lime", "fresh lime soda", "soda"],
+    14: ["sree nandana p", "sree nandana", "sreenandana", "sreenandana p", "nandu", "nandana", "sree nandana p."],
+  };
+
+  const aliases = chapterAliases[chapterId] || [];
+  const commaOrSlashSplit = targetAnsRaw.split(/[,/]/).map(normalizeAnswer);
+
+  const allValidOptions = new Set([
+    target,
+    ...aliases.map(normalizeAnswer),
+    ...commaOrSlashSplit,
+  ]);
+
+  return allValidOptions.has(user);
+};
+
 const DEFAULT_STORY_ITEMS: StoryItem[] = [
   {
     id: 1,
     src: "/AN_Story/Img_1_An.png",
     tag: "The Beginning",
-    text: "Waiting outside, nervous heartbeats, and stolen glances on September 17, 2021.",
+    text: "Nandu, do you remember this day? We were complete strangers, and we didn’t even notice each other… little did we know what was about to begin. ❤️",
     chapterNumber: "01",
-    subTitle: "First Glance & Nervous Butterflies",
-    question: "On which date did our story begin with nervous heartbeats?",
-    answer: "September 17, 2021",
+    subTitle: "Two Strangers!!!",
+    question: "On which year did our story begin with?",
+    answer: "2021",
   },
   {
     id: 2,
     src: "/AN_Story/Img_2_Hopital_An.png",
     tag: "Quiet Moments",
-    text: "Sitting together in silence, finding comfort right beside each other.",
+    text: "Everyone’s love story starts somewhere… ours started while waiting outside a labour room😂🫣❤️.",
     chapterNumber: "02",
-    subTitle: "Unspoken Sanctuary",
-    question: "Where did we sit together in quiet silence finding comfort?",
-    answer: "Hospital",
+    subTitle: "The Spark ✨",
+    question: "When did we first meet? 💕 __/09/2021",
+    answer: "14",
   },
   {
     id: 3,
     src: "/AN_Story/Img_3_Msg_An.png",
     tag: "That First Text",
-    text: "That heart-drop moment when your message popped up: 'Nandu 😍'.",
+    text: "Are you thinking now… should you have just sent “Friends 🤝\"? 🤨🧐👊",
     chapterNumber: "03",
-    subTitle: "The Notification That Changed Everything",
-    question: "What special nickname popped up in that heart-drop notification message?",
-    answer: "Nandu",
+    subTitle: "The Notification That Changed Everything💌",
+    question: "When did you message me for the first time?💕 __/09/2021",
+    answer: "15",
   },
   {
     id: 4,
     src: "/AN_Story/Img_4_Pro_An.png",
     tag: "Late Night Confessions",
-    text: "Late night typing, trembling fingers, and 'Enk ninna ishtann'.",
+    text: "എത്ര ആലോചിച്ചിട്ടും ഇവിടെ എഴുതാൻ എനിക്ക് തൃപ്തിയുള്ളതൊന്നും കിട്ടുന്നില്ല… അതുകൊണ്ട് ഒറ്റവാക്കിൽ പറയാം — എന്റെ ലോകമായതിന് നന്ദി. ❤️\n",
     chapterNumber: "04",
-    subTitle: "Whispers Across Screens",
-    question: "What romantic confession phrase did we type with trembling fingers?",
-    answer: "Enk ninna ishtann",
+    subTitle: "Official Beginning ❤️",
+    question: "When did I propose to you? ❤️ __/09/2021",
+    answer: "17",
   },
   {
     id: 5,
     src: "/AN_Story/Img_5_Room_An.png",
     tag: "The Surprise Visit",
-    text: "Panicking over my messy room, then cleaning it up in record time.",
+    text: "You made me so nervous that day…😓😓😓",
     chapterNumber: "05",
-    subTitle: "Sprint for Perfection",
-    question: "What was being cleaned in record time before the surprise visit?",
+    subTitle: "My Nest 🏡❤️",
+    question: "What did you suddenly come and see was messy?",
     answer: "Room",
   },
   {
     id: 6,
     src: "/AN_Story/Img_6_KSRTC_An.png",
     tag: "First Hand Hold",
-    text: "Masked up on the KSRTC bus, our hands meeting for the very first time.",
+    text: "My legs were shaking, while your eyes were asking for one more mile. ❤️",
     chapterNumber: "06",
-    subTitle: "A Journey of Touch",
+    subTitle: "A Journey of Touch👩🏻‍❤️‍👨🏻",
     question: "On which bus service did our hands meet for the very first time?",
     answer: "KSRTC",
   },
@@ -171,61 +218,61 @@ const DEFAULT_STORY_ITEMS: StoryItem[] = [
     id: 7,
     src: "/AN_Story/Img_7_Pozha_An.png",
     tag: "By The River",
-    text: "Quiet golden hour by the riverbank. A moment frozen forever.",
+    text: "Quiet golden hour by the riverbank. A moment frozen forever🥶🤤.",
     chapterNumber: "07",
-    subTitle: "Golden Hour Serenade",
-    question: "Where were we sitting during that peaceful golden hour moment?",
-    answer: "Riverbank",
+    subTitle: "The kiss😚🥶",
+    question: "What was the first thing that happened here?",
+    answer: "Kiss",
   },
   {
     id: 8,
     src: "/AN_Story/Img_8_Lift_An.png",
     tag: "First Drive",
-    text: "First car ride selfie together. Same roads, brand new beginnings.",
+    text: "Enik nanam varunn🫣",
     chapterNumber: "08",
-    subTitle: "Cruising into Tomorrow",
-    question: "What vehicle took us on our first drive together?",
-    answer: "Car",
+    subTitle: "The Bracelet & Black Bindi 🖤✨",
+    question: "The day I picked you up from school, an important moment happened. What was the date? ❤️ __/05/2022",
+    answer: "5",
   },
   {
     id: 9,
     src: "/AN_Story/Img_9_First_View_point_An.png",
     tag: "Peace",
-    text: "Falling asleep peacefully on my shoulder while the world passed by.",
+    text: "Falling asleep peacefully on my shoulder while the world passed by.The first trip, No plans,  No worries.—just you and me.",
     chapterNumber: "09",
-    subTitle: "Resting in Safe Arms",
-    question: "Where did you fall asleep peacefully while the world passed by?",
-    answer: "Shoulder",
+    subTitle: "Nandu nalloru view point ind poyalo?",
+    question: "As you know, this was our first viewpoint visit. What was the name of the car we went on our first trip in? 🚗❤️",
+    answer: "Kwid",
   },
   {
     id: 10,
     src: "/AN_Story/Img_10_Shukriya_An.png",
     tag: "Shukriya Bus",
-    text: "Leaning on each other on the Kasaragod-Kozhikode route.",
+    text: "Backil aarenkilum photo eduknandon onn nokkk ingane kidakathe🤦‍♂️",
     chapterNumber: "10",
     subTitle: "Miles of Shared Warmth",
-    question: "Which destination route brought us miles of shared warmth on the bus?",
-    answer: "Kasaragod to Kozhikode",
+    question: "What was the name of the bus we usually took together at 4:30 PM? 🚌❤️",
+    answer: "Shukriya",
   },
   {
     id: 11,
     src: "/AN_Story/Img_11_Issue_An.png",
     tag: "Tough Days",
-    text: "Working through misunderstandings, learning to listen and understand.",
+    text: "Working through misunderstandings, learning to listen and understand😊🤍.",
     chapterNumber: "11",
-    subTitle: "Growing Stronger Together",
-    question: "What helped us grow stronger through tough days and misunderstandings?",
-    answer: "Listening and understanding",
+    subTitle: "The bond : Growing Stronger Together✨",
+    question: "Which messaging app did your brother catch you using? 📱",
+    answer: "Telegram",
   },
   {
     id: 12,
     src: "/AN_Story/Img_12_Long_An.png",
     tag: "Long Distance",
-    text: "Late study sessions, laptop screens, and counting down the miles.",
+    text: "Late study sessions, exams, laptop screens, and counting down the miles😓🤍.",
     chapterNumber: "12",
-    subTitle: "Bridges Across Distance",
-    question: "What bridged our hearts during late distance study sessions?",
-    answer: "Laptop screens",
+    subTitle: "Bridges Across Distance🖤.",
+    question: "In which year did I go to Trivandrum for my studies? ",
+    answer: "2023",
   },
   {
     id: 13,
@@ -233,19 +280,19 @@ const DEFAULT_STORY_ITEMS: StoryItem[] = [
     tag: "Journey Back",
     text: "Platform goodbyes, train tickets, and the ache to see each other again.",
     chapterNumber: "13",
-    subTitle: "The Countdown to Reunions",
-    question: "Where were our sweet goodbyes and tickets held during reunions?",
-    answer: "Train platform",
+    subTitle: "The Countdown to Reunions😓😑",
+    question: "What was the last food or drink we had together? ",
+    answer: "Soda Lime",
   },
   {
     id: 14,
     src: "/AN_Story/Img_14_Final_An.png",
     tag: "Sep 17, 2021 – Sep 17, 2026",
-    text: "Five whole years of memories, lessons, and unconditional love.",
+    text: "Five whole years of memories, lessons, and unconditional love.Thankyou my 🌏🫂.",
     chapterNumber: "14",
-    subTitle: "Forever & Ever",
-    question: "How many years of unconditional love are we celebrating?",
-    answer: "5 years",
+    subTitle: "Memories to Keep Forever ❤️",
+    question: "Who is Anoopkumar K’s love? ❤️",
+    answer: "Sree Nandana P",
   },
 ];
 
@@ -337,17 +384,17 @@ export default function PaginatedStorybook() {
     const item = storyItems.find((i) => i.id === chapterId);
     if (!item) return;
 
-    const inputAns = (userAnswers[chapterId] || "").trim().toLowerCase();
-    const targetAns = (item.answer || "").trim().toLowerCase();
+    const inputAns = userAnswers[chapterId] || "";
 
-    if (!inputAns) {
+    if (!inputAns.trim()) {
       setQuizErrors((prev) => ({ ...prev, [chapterId]: "Please type your answer above!" }));
       playSoundEffect("error", soundEnabled);
       return;
     }
 
-    // Flexible answer validation: exact or sub-string match
-    if (inputAns === targetAns || targetAns.includes(inputAns) || inputAns.includes(targetAns)) {
+    const isCorrect = checkAnswerCorrectness(inputAns, item.answer || "", chapterId);
+
+    if (isCorrect) {
       playSoundEffect("unlock", soundEnabled);
       setUnlockedChapters((prev) => new Set([...Array.from(prev), chapterId + 1])); // Unlock next chapter
       setQuizErrors((prev) => ({ ...prev, [chapterId]: "" }));
