@@ -20,7 +20,6 @@ import {
   Grid,
   RotateCw,
   Calendar,
-  Key,
   HelpCircle,
   AlertCircle,
   X,
@@ -288,7 +287,6 @@ export default function PaginatedStorybook() {
   const [waxBroken, setWaxBroken] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [showOverviewDrawer, setShowOverviewDrawer] = useState(false);
-  const [showAdminModal, setShowAdminModal] = useState(false);
 
   // Q&A Quiz & Lock State per session
   const [unlockedChapters, setUnlockedChapters] = useState<Set<number>>(new Set([1])); // Chapter 1 unlocked by default
@@ -584,15 +582,6 @@ export default function PaginatedStorybook() {
           >
             {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
           </button>
-
-          {/* Admin Portal Key Button */}
-          <button
-            onClick={() => setShowAdminModal(true)}
-            className="p-2 rounded-full bg-red-50 border border-red-200 text-red-600 hover:bg-red-100 shadow-2xs transition-colors cursor-pointer"
-            title="Open Admin Portal (Backend Management)"
-          >
-            <Key className="w-4 h-4" />
-          </button>
         </div>
       </header>
 
@@ -704,28 +693,7 @@ export default function PaginatedStorybook() {
         )}
       </AnimatePresence>
 
-      {/* ADMIN BACKEND MODAL */}
-      <AnimatePresence>
-        {showAdminModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
-            onClick={() => setShowAdminModal(false)}
-          >
-            <div className="w-full max-w-5xl my-8" onClick={(e) => e.stopPropagation()}>
-              <AdminPortal
-                storyItems={storyItems}
-                letterContent={letterContent}
-                homeContent={homeContent}
-                onUpdateData={handleAdminUpdateData}
-                onClose={() => setShowAdminModal(false)}
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
 
       {/* MAIN 3D BOOK STAGE CONTAINER */}
       <main className="relative z-10 flex-1 max-w-5xl w-full mx-auto px-4 sm:px-8 py-6 flex flex-col justify-center items-center">
@@ -1001,20 +969,20 @@ export default function PaginatedStorybook() {
               </div>
 
               {/* Bottom Card Navigation Action Bar */}
-              <div className="pt-6 border-t border-[#ece5dd]/80 flex items-center justify-between mt-6">
+              <div className="pt-6 border-t border-[#ece5dd]/80 flex items-center justify-between gap-2 mt-6">
                 {/* Previous Button */}
                 <motion.button
                   whileHover={{ scale: 1.05, x: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={(e) => goToPrevPage(e)}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#f4efea] hover:bg-[#e5ded4] text-xs font-semibold text-gray-700 transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2.5 rounded-full bg-[#f4efea] hover:bg-[#e5ded4] text-xs font-semibold text-gray-700 transition-all cursor-pointer shrink-0"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   <span>Previous</span>
                 </motion.button>
 
-                {/* Progress Dots */}
-                <div className="flex items-center gap-1.5">
+                {/* Desktop Progress Dots */}
+                <div className="hidden sm:flex items-center gap-1.5">
                   {storyItems.map((item) => (
                     <button
                       key={item.id}
@@ -1031,6 +999,11 @@ export default function PaginatedStorybook() {
                   ))}
                 </div>
 
+                {/* Mobile Page Indicator */}
+                <div className="sm:hidden text-xs font-semibold text-gray-500 font-mono">
+                  {currentChapterItem.id} / {storyItems.length}
+                </div>
+
                 {/* Next Button with Lock state shake */}
                 <motion.button
                   animate={shakeLock ? { x: [-10, 10, -8, 8, -4, 4, 0] } : {}}
@@ -1038,7 +1011,7 @@ export default function PaginatedStorybook() {
                   whileHover={{ scale: 1.05, x: 2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={(e) => goToNextPage(e)}
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-xs font-semibold shadow-md transition-all cursor-pointer ${
+                  className={`inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2.5 rounded-full text-white text-xs font-semibold shadow-md transition-all cursor-pointer shrink-0 ${
                     currentChapterUnlocked
                       ? "bg-red-600 hover:bg-red-700 shadow-red-500/20"
                       : "bg-amber-600 hover:bg-amber-700 shadow-amber-500/20"
